@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>Fees Details</title>
+{% endblock %}
+{% block content %}
+<center><h3 style="color:Yellow">Total Fees = Rs.{{fees}}/-</h3></center>
+<table class="table table-sm table-stripped">
+    <thead>
+        <tr>
+            <th class="border border-primary"><center>Student Name</center></th>
+            <th class="border border-primary"><center>Course</center></th>
+            <th class="border border-primary"><center>Present Batch Name</center></th>
+            <th class="border border-primary"><center>Payment Date</center></th>
+            <th class="border border-primary"><center>UTR/UPI No</center></th>
+            <th class="border border-primary"><center>Amount Received</center></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for obj in data %}
+        <tr>
+            <td class="border border-primary"><center>{{obj.student_name}}</center></td>
+            <td class="border border-primary">{{obj.course}}</td>
+            <td class="border border-primary"><center>{{obj.present_batch_name}}</center></td>
+            <td class="border border-primary"><center>{{obj.payment_date}}</center></td>
+            <td class="border border-primary"><center>{{obj.UTR_UPI_No}}</center></td>
+            <td class="border border-primary"><center>{{obj.amount}}</center></td>
+            <td class="border border-primary"><center><button class="btn btn-outline-warning"><a href="{% url 'feesdelete_url' obj.student_name obj.course obj.UTR_UPI_No %}">Delete</a></button></center></td>
+
+       </tr>
+    {% endfor %}
+        <tr>
+            <td class="border border-primary"><center></center></td>
+            <td class="border border-primary"></td>
+            <td class="border border-primary"><center></center></td>
+            <td class="border border-primary"><center></center></td>
+            <td class="border border-primary"><center>Amount Received Rs.</center></td>
+            <td class="border border-primary"><center>{{received}}</center></td>
+       </tr>
+            <tr>
+            <td class="border border-primary"><center></center></td>
+            <td class="border border-primary"></td>
+            <td class="border border-primary"><center></center></td>
+            <td class="border border-primary"><center></center></td>
+            <td class="border border-primary"><center>Balance Amount Rs</center></td>
+            <td class="border border-primary"><center>{{balance}}</center></td>
+       </tr>
+    </tbody>
+</table>
+<center>
+<input value="Return" class="btn btn-warning col-4" onclick="location.href='{% url 'admissionlist_url' %}';">
+</center>
+{% endblock %}

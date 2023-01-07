@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Delete Confirmation</title>
+{% endblock %}
+
+{% block content %}
+<div class="container jumbotron">
+    <form method="POST">
+        {% csrf_token %}
+        <h3>Do you really want to delete for Name <span style="color:red;">{{name}}</span></h3>
+        <h3>and UTR/UPI No <span style="color:red;">{{utr}}</span> Record ?</h3>
+        <br>
+        <center><input type="submit" value="YES" class="btn btn-info col-4"></center>
+    </form>
+    <br>
+    <center><button class="btn btn-warning col-4" ><a href="{% url 'feesdetails_url' name course %}">No</a></button></center>
+</div>
+{% endblock %}

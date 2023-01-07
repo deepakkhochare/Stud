@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Branch List</title>
+{% endblock %}
+{% block content %}
+<h3 style="color:red"><marquee direction="right" scrollamount="10">Student Details</marquee></h3>
+<table class="table table-sm  table-stripped">
+    <thead>
+        <tr>
+            <th class="border border-primary"><center>Id</center></th>
+            <th class="border border-primary"><center>Student Name</center></th>
+            <th class="border border-primary"><center>Email</center></th>
+            <th class="border border-primary"><center>Mobile</center></th>
+            <th class="border border-primary"><center>Mode</center></th>
+             <th class="border border-primary"><center></center></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for obj in data %}
+        <tr>
+            <td class="border border-primary"><center>{{obj.student_id}}</center></td>
+            <td class="border border-primary">{{obj.student_name}}</td>
+            <td class="border border-primary">{{obj.email}}</td>
+            <td class="border border-primary"><center>{{obj.mobile}}</center></td>
+            <td class="border border-primary"><center>{{obj.mode}}</center></td>
+            <td class="border border-primary"><center><button class="btn btn-outline-warning"><a href="{% url 'studentupdate_url' obj.student_id %}">Update</a></button></center></td>
+       </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<center>
+<input value="Return" class="btn btn-warning col-4" onclick="location.href='{% url 'home_url' %}';">
+</center>
+{% endblock %}

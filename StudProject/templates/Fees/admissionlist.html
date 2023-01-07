@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>Admission List</title>
+{% endblock %}
+{% block content %}
+<h3 style="color:red"><marquee direction="right" scrollamount="10">{{msg}}</marquee></h3>
+<table class="table table-sm table-stripped">
+    <thead>
+        <tr>
+            <th class="border border-primary"><center>Id</center></th>
+            <th class="border border-primary"><center>Student Name</center></th>
+            <th class="border border-primary"><center>Course</center></th>
+            <th class="border border-primary"><center>Original Batch Name</center></th>
+            <th class="border border-primary"><center>Fees Allotted</center></th>
+            <th class="border border-primary"><center>Fees Received</center></th>
+            <th class="border border-primary"><center>Fees Balance</center></th>
+            <th class="border border-primary"><center></center></th>
+            <th class="border border-primary"><center></center></th>
+            <th class="border border-primary"><center></center></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for obj in data %}
+        <tr>
+            <td class="border border-primary"><center>{{obj.id}}</center></td>
+            <td class="border border-primary">{{obj.student_name}}</td>
+            <td class="border border-primary">{{obj.course}}</td>
+            <td class="border border-primary"><center>{{obj.original_batch_name}}</center></td>
+            <td class="border border-primary"><center>{{obj.fees_allotted}}</center></td>
+            <td class="border border-primary"><center>{{obj.fees_received}}</center></td>
+            <td class="border border-primary"><center>{{obj.fees_balance}}</center></td>
+            <td class="border border-primary"><center><button class="btn btn-outline-warning"><a href="{% url 'admissionupdate_url' obj.id %}">Update</a></button></center></td>
+            <td class="border border-primary"><center><button class="btn btn-outline-warning"><a href="{% url 'fees_url' obj.student_name obj.course obj.present_batch_name obj.fees_balance %}">Fees Entry</a></button></center></td>
+            <td class="border border-primary"><center><button class="btn btn-outline-warning"><a href="{% url 'feesdetails_url' obj.student_name obj.course %}">Fees Details/Delete</a></button></center></td>
+       </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+<center>
+<input value="Return" class="btn btn-warning col-4" onclick="location.href='{% url 'home_url' %}';">
+</center>
+{% endblock %}

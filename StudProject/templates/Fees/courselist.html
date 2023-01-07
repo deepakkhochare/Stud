@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Course List</title>
+{% endblock %}
+{% block content %}
+<h3 style="color:red"><marquee direction="right" scrollamount="10">Course Details</marquee></h3>
+<table class="table table-sm  table-stripped">
+    <thead>
+        <tr>
+            <th class="border border-primary"><center>Id</center></th>
+            <th class="border border-primary"><center>Course Name</center></th>
+            <th class="border border-primary"><center>Fees</center></th>
+            <th class="border border-primary"><center></center></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for obj in data %}
+        <tr>
+            <td class="border border-primary"><center>{{obj.course_id}}</center></td>
+            <td class="border border-primary">{{obj.course}}</td>
+            <td class="border border-primary"><center>{{obj.standard_Fees}}</center></td>
+            <td class="border border-primary"><center><button class="btn btn-outline-warning"><a href="{% url 'courseupdate_url' obj.course_id %}">Update</a></button></center></td>
+       </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<center>
+<input value="Return" class="btn btn-warning col-4" onclick="location.href='{% url 'home_url' %}';">
+</center>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>Fees</title>
+{% endblock %}
+{% block content %}
+<div class="container jumbotron">
+    <h3 style="color:Blue;"><center><u>{{msg}}</u></center></h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        {% if msg == 'Fees Updation' %}
+            <input type="submit" value="Add" class="btn btn-info col-5">
+        {% else %}
+            <input type="submit" value="Update" class="btn btn-info col-5">
+        {% endif %}
+        <input value="Return" class="btn btn-warning col-5" onclick="location.href='{% url 'admissionlist_url' %}';">
+    </form>
+</div>
+{% endblock %}
